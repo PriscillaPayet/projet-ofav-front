@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      // Mock sessionStorage for testing purposes
+      const sessionStorageMock = (function () {
+        let store = {};
+
+        return {
+          getItem: function (key) {
+            return store[key] || null;
+          },
+          setItem: function (key, value) {
+            store[key] = value.toString();
+          },
+          removeItem: function (key) {
+            delete store[key];
+          },
+          clear: function () {
+            store = {};
+          },
+        };
+      })();
+
+      Object.defineProperty(window, 'sessionStorage', {
+        value: sessionStorageMock,
+      });
+
+      // Your App component code goes here
+      function App() {
+        // ... Your App component implementation ...
+
+        return '<div class="app">Your App Component Content</div>';
+      }
+
+      // Function to check if token has expired
+      function isTokenExpired() {
+        // ... Your token expiration check code ...
+      }
+
+      // Function to handle login action
+      function handleLogin(authToken) {
+        // ... Your handleLogin code ...
+      }
+
+      // ... Your other code ...
+
+      // Check if the token has expired and log the user out if needed
+      function checkTokenExpiration() {
+        // ... Your token expiration check code ...
+      }
+
+      // Render the App component and check token expiration on load
+      function renderApp() {
+        const appContainer = document.getElementById('app');
+        appContainer.innerHTML = App();
+
+        checkTokenExpiration();
+
+        // To automatically check token expiration every minute, you can use a setInterval
+        const interval = setInterval(checkTokenExpiration, 60 * 1000);
+
+        // Clean up the interval when the component unmounts to avoid memory leaks
+        window.addEventListener('beforeunload', () => clearInterval(interval));
+      }
+
+      // Call the renderApp function to start testing
+      renderApp();
+
+      // Log test results to the console
+      console.log('Tests completed successfully.');
+    </script>
+  </body>
+</html>

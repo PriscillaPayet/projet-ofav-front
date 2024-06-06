@@ -1,0 +1,28 @@
+@use '../../styles/variables' as v;
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  margin: auto;
+
+  position: fixed;
+  top: 45%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  animation: toto 1.5s infinite ease-in-out;
+}
+
+@keyframes toto {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    background-color: #014f86;
+  }
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    background-color: #a9d6e5;
+  }
+}
